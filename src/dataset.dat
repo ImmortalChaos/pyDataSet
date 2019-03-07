@@ -1,0 +1,7 @@
+; data information
+[AVERAGE PRICE OF KOREAN A LOT-SOLID APARTMENT]
+TITLE = 전국 신규 민간 아파트 분양가격 동향
+DESCRIPTION = 주택분양보증을 받아 분양한 전체 민간 신규아파트 분양가격 동향
+URL = https://www.data.go.kr/dataset/fileDownload.do?atchFileId=FILE_000000001499267&fileDetailSn=1&publicDataDetailPk=uddi:c0e72451-877c-49bb-93a2-d3da02f69424
+CREATE_DATE = 2019-01-18
+ENCODING=EUC-KR
