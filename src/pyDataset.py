@@ -18,10 +18,8 @@ def splitConfigArgumentToken(txt) :
 		return txt
 
 	lines = txt.split(",")
-	if len(lines)==1 : # String
-		rt = txt.split("|")
-		if len(rt)==1 :
-			return txt
+	if len(lines)==1 and "|" not in txt : # String
+		return txt
 
 	result = []
 	for l in lines :

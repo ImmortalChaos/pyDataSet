@@ -35,7 +35,6 @@ class pyDataSetTest(unittest.TestCase):
 
 	def test_loadData(self) :
 		data = self.ds.loadData('Sample Data')
-		print(data.head())
 		self.assertEqual(isinstance(data, pd.core.frame.DataFrame), True);
 
 if __name__ == '__main__':
