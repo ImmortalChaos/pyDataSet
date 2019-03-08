@@ -1,1 +1,3 @@
 coveralls
+pandas
+matplotlib
