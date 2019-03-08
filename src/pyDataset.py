@@ -69,7 +69,7 @@ class DataSet:
 		'''change font for Matplotlib.
 		If you use Korean characters, you need to set the font so that you can see the correct characters.
 		This method tested UbunutOS and MacOS.'''
-		fontpaths = ['/usr/share/fonts/truetype/nanum/'+font_filename+'.ttf', '/Library/Fonts/'+font_filename+'.ttf']
+		fontpaths = ['/usr/share/fonts/truetype/nanum/'+font_filename+'.ttf', '/Library/Fonts/'+font_filename+'.ttf', os.path.join(self.rootPath, font_filename+'.ttf')]
 		for fontpath in fontpaths :
 			if os.path.exists(fontpath) :
 				fm.FontProperties(fname=fontpath, size=9)
