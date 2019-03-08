@@ -8,7 +8,12 @@ import os
 def _isShowInfo(keyname) :
 	return keyname=="TITLE" or keyname=="DESCRIPTION" or keyname=="CREATE_DATE"
 
-def _splitToken(txt) :
+def _StringtoNumber(text) :
+	if "." in text :
+		return float(text)
+	return int(text)
+
+def splitConfigArgumentToken(txt) :
 	if txt==None or txt=="" :
 		return txt
 
@@ -32,22 +37,22 @@ class DataSet:
 		self.rootPath = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 
 	def _doTransformColumnType(self, p) :
-		vparams = _splitToken(p)
+		vparams = splitConfigArgumentToken(p)
 		for vparam in vparams:
 			if vparam[1]=="STR" :
 				self.data[vparam[0]] = self.data[vparam[0]].astype(str)
 
 	def _doTransformAddColumn(self, p) :
-		vparams = _splitToken(p)
+		vparams = splitConfigArgumentToken(p)
 		for vparam in vparams:
 			if vparam[1]=="to_numeric" :
 				self.data[vparam[0]] = pd.to_numeric(self.data[vparam[2]], errors='coerce')
 			elif vparam[1]=="mul" :
-				self.data[vparam[0]] = self.data[vparam[2]]*float(vparam[3])
+				self.data[vparam[0]] = self.data[vparam[2]]*_StringtoNumber(vparam[3])
 
 	def _doTransformDeleteColumn(self, p) :
-		vparams = _splitToken(p)
-		if type(vparams) is str :
+		vparams = splitConfigArgumentToken(p)
+		if isinstance(vparams, str) :
 			self.data = self.data.drop([vparams], axis=1)
 
 	def _doTransformationDatas(self, cfg) :
@@ -67,7 +72,7 @@ class DataSet:
 		fontpaths = ['/usr/share/fonts/truetype/nanum/'+font_filename+'.ttf', '/Library/Fonts/'+font_filename+'.ttf']
 		for fontpath in fontpaths :
 			if os.path.exists(fontpath) :
-				font = fm.FontProperties(fname=fontpath, size=9)
+				fm.FontProperties(fname=fontpath, size=9)
 				mpl.font_manager._rebuild()
 				mpl.pyplot.rc('font', family=font_filename)
 				return True

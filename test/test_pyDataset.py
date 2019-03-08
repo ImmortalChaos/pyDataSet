@@ -12,6 +12,13 @@ class pyDataSetTest(unittest.TestCase):
 	def setUp(self) :
 		self.ds = DataSet()
 
+	def test_splitConfigArgumentToken(self) :
+		self.assertEqual(splitConfigArgumentToken(None), None)
+		self.assertEqual(splitConfigArgumentToken(""), "")
+		self.assertEqual(splitConfigArgumentToken("Text"), "Text")
+		self.assertEqual(splitConfigArgumentToken("연도|STR, 월|STR"), [["연도","STR"], ["월","STR"]])
+		self.assertEqual(splitConfigArgumentToken("연도|STR"), [["연도","STR"]])
+
 	def test_aprintKeys(self) :
 		self.assertEqual(self.ds.printKeys(), 2)
 
@@ -28,6 +35,7 @@ class pyDataSetTest(unittest.TestCase):
 
 	def test_loadData(self) :
 		data = self.ds.loadData('Sample Data')
+		print(data.head())
 		self.assertEqual(isinstance(data, pd.core.frame.DataFrame), True);
 
 if __name__ == '__main__':
