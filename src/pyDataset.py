@@ -38,7 +38,3 @@ class DataSet:
 			print(section)
 
 		return sectionCount
-
-if __name__ == "__main__":
-	ds = DataSet()
-	ds.printKeys()
