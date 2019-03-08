@@ -5,6 +5,7 @@ srcdir = '../src'
 sys.path.insert(0, os.path.abspath(os.path.join(testdir, srcdir)))
 
 import unittest
+import pandas as pd
 from pyDataset import *
 
 class pyDataSetTest(unittest.TestCase):
@@ -12,7 +13,7 @@ class pyDataSetTest(unittest.TestCase):
 		self.ds = DataSet()
 
 	def test_aprintKeys(self) :
-		self.assertEqual(self.ds.printKeys(), 1)
+		self.assertEqual(self.ds.printKeys(), 2)
 
 	def test_getInfo(self) :
 		answer = "TITLE=전국 신규 민간 아파트 분양가격 동향" + os.linesep
@@ -22,10 +23,12 @@ class pyDataSetTest(unittest.TestCase):
 
 	def test_getKeys(self) :
 		dsk = self.ds.getKeys()
-		self.assertEqual(dsk[0], "AVERAGE PRICE OF KOREAN A LOT-SOLID APARTMENT")
+		self.assertEqual(dsk[0], "SAMPLE DATA")
+		self.assertEqual(dsk[1], "AVERAGE PRICE OF KOREAN A LOT-SOLID APARTMENT")
 
 	def test_loadData(self) :
-		self.assertEqual(self.ds.loadData('Average price of korean a lot-solid apartment'), "2019-01-18");
+		data = self.ds.loadData('Sample Data')
+		self.assertEqual(isinstance(data, pd.core.frame.DataFrame), True);
 
 if __name__ == '__main__':
 	unittest.main()
