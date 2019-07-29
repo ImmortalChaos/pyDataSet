@@ -1,0 +1,6 @@
+## Shell Script ##
+*.sh
+*.bat
+
+## Compile Object ##
+*.pyc
